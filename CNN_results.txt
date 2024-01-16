@@ -1,0 +1,136 @@
+classification
+------------------------------
+model = Sequential()
+
+model.add(Dense(32, activation='relu', input_shape=(X_train_flatten.shape[1:])))
+model.add(Dense(64, activation='relu'))
+model.add(Dense(128, activation='relu'))
+model.add(Dense(256, activation='relu'))
+model.add(Dense(512, activation='relu'))
+model.add(Dense(10, activation='softmax'))
+
+Validation loss: 1.4776495695114136
+Validation accuracy: 0.4749000072479248
+-------------------------
+model = Sequential()
+
+model.add(Conv2D(16, (3,3), padding='same', input_shape=x_train.shape[1:]))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Conv2D(16, (3,3), padding='same'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+model.add(Flatten())
+model.add(Dense(10))
+model.add(Activation('softmax'))
+
+Validation loss: 1.249979019165039
+Validation accuracy: 0.5615000128746033
+--------------------------------------------------
+model = Sequential()
+
+#layer 1
+model.add(Conv2D(96, (11,11), padding='same', input_shape=x_train.shape[1:]))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(3,3)))
+
+#layer 2
+model.add(Conv2D(96, (5,5), padding='same'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(3,3)))
+
+#layer 3
+model.add(Conv2D(256, (3,3), padding='same'))
+model.add(Activation('relu'))
+
+#layer 4
+model.add(Conv2D(256, (3,3), padding='same', strides=1))
+model.add(Activation('relu'))
+
+model.add(Flatten())
+model.add(Dense(10))
+model.add(Activation('softmax'))
+
+Validation loss: 1.1784065961837769
+Validation accuracy: 0.70660001039505
+--------------------------------------------------------
+
+
+
+regression
+
+model.add(Conv2D(96, (3,3), padding='same', input_shape=X_train.shape[1:]))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Conv2D(16, (3,3), padding='same'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+model.add(Flatten())
+model.add(Dense(1))
+model.add(Activation('softmax'))
+
+model.add(Flatten())
+model.add(Dense(1))
+model.add(Activation('linear'))
+
+Predicting house prices - Estimation Error: 69.24%
+------------------------------------------------------
+model.add(Conv2D(32, (3,3), padding='same', input_shape=X_train.shape[1:]))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+model.add(Conv2D(64, (3,3), padding='same'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+model.add(Conv2D(128, (3,3), padding='same'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+model.add(Flatten())
+model.add(Dense(650))
+model.add(Activation('relu'))
+model.add(Dropout(0.5))
+model.add(Dense(784))
+model.add(Activation('relu'))
+
+model.add(Flatten())
+model.add(Dense(1))
+model.add(Activation('linear'))
+
+Predicting house prices - Estimation Error: 54.09%
+-------------------------------------------------------
+# model.add(Conv2D(64, (3,3), padding='same', input_shape=X_train.shape[1:]))
+# model.add(Activation('relu'))
+# model.add(MaxPooling2D(pool_size=(2,2)))
+
+# input_shape=X_train.shape[1:]
+
+# model.add(Flatten())
+model.add(Dense(8, input_shape=X_train.shape[1:], activation='relu'))
+# model.add(Activation('relu'))
+model.add(Dropout(0.2))
+model.add(Dense(4))
+model.add(Activation('relu'))
+model.add(Flatten())
+
+# model.add(Flatten())
+model.add(Dense(1))
+model.add(Activation('linear'))
+
+Predicting house prices - Estimation Error: 58.86%
+---------------------------------------------------------
+model.add(Dense(8, input_shape=X_train.shape[1:], activation='softmax'))
+model.add(Flatten())
+model.add(Dropout(0.2))
+model.add(Dense(4))
+model.add(Activation('softmax'))
+
+
+# model.add(Flatten())
+model.add(Dense(1))
+model.add(Activation('linear'))
+
+Predicting house prices - Estimation Error: 68.77%
